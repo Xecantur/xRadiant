@@ -1001,7 +1001,7 @@ typedef enum
 }
 surfaceType_t;
 
-char            *surfaceTypes[ NUM_SURFACE_TYPES ]
+/*char            *surfaceTypes[ NUM_SURFACE_TYPES ]
 #ifndef MAIN_C
 ;
 #else
@@ -1020,7 +1020,7 @@ char            *surfaceTypes[ NUM_SURFACE_TYPES ]
 	"SURFACE_SHADER"
 	};
 #endif
-
+*/
 
 /* ydnar: this struct needs an overhaul (again, heh) */
 typedef struct mapDrawSurface_s

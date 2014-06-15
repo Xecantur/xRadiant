@@ -37,6 +37,27 @@
 #include "q3map2.h"
 
 
+char            *surfaceTypes[ NUM_SURFACE_TYPES ]
+#ifndef MAIN_C
+;
+#else
+	=
+	{
+	"SURFACE_BAD",
+	"SURFACE_FACE",
+	"SURFACE_PATCH",
+	"SURFACE_TRIANGLES",
+	"SURFACE_FLARE",
+	"SURFACE_FOLIAGE",
+	"SURFACE_FORCED_META",
+	"SURFACE_META",
+	"SURFACE_FOGHULL",
+	"SURFACE_DECAL",
+	"SURFACE_SHADER"
+	};
+#endif
+
+
 
 /*
    AllocDrawSurface()

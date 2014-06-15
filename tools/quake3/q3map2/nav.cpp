@@ -20,11 +20,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
 // nav.cpp -- navigation mesh generator interface
-
 extern "C" {
 #include "q3map2.h"
 }
-
 #include <vector>
 #include <queue>
 #include <iostream>
