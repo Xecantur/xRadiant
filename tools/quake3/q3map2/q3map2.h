@@ -1537,6 +1537,9 @@ int                         ConvertBSPToMap_BP( char *bspName );
 /* convert_ase.c */
 int                         ConvertBSPToASE( char *bspName );
 
+/* nav.cpp \\Nav Mesh Support */
+int			    NavMain(int argc, char **argv);
+
 /* convert_obj.c */
 int                         ConvertBSPToOBJ( char *bspName );
 

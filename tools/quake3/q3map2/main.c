@@ -1843,6 +1843,17 @@ int main( int argc, char **argv ){
 		argv[ 1 ] = "-fast";    /* eek a hack */
 		r = LightMain( argc, argv );
 	}
+	/* syphter: Navigation Mesh Generation */
+	else if (!strcmp(argv[1], "-nav"))
+	{
+		r = NavMain(argc - 1, argv + 1);
+	}
+	/* syphter: NavMesh Help */
+	else if(!strcmp(argv[1], "-navhelp"))
+	{
+		Sys_Printf( "Usage: %s -nav -threads 1 -game unv <mapname.bsp> " , argv[0]);
+		exit(2);
+	}
 
 	/* ydnar: lightmap export */
 	else if ( !strcmp( argv[ 1 ], "-export" ) ) {

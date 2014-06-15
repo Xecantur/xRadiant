@@ -2,7 +2,7 @@ MAKEFILE_CONF      ?= Makefile.conf
 -include $(MAKEFILE_CONF)
 
 ## CONFIGURATION SETTINGS
-# user customizable stuf
+# user customizable stuff
 # you may override this in Makefile.conf or the environment
 BUILD              ?= debug
 # or: release, or: extradebug, or: profile
@@ -444,6 +444,15 @@ binaries-q3map2: \
 	$(INSTALLDIR)/q3map2.$(EXE) \
 	$(INSTALLDIR)/q3map2 \
 
+.PHONY: navlibs
+navlibs:
+	cd libs/detour/
+	make
+	cd ../recast/
+	make
+	cd ../fastlz/
+	make
+	cd ../../
 
 .PHONY: clean
 clean:
@@ -482,10 +491,32 @@ endif
 %.o: %.c $(if $(findstring $(DEPEND_ON_MAKEFILE),yes),$(wildcard Makefile*),) | dependencies-check
 	$(CC) $< $(CFLAGS) $(CFLAGS_COMMON) $(CPPFLAGS_EXTRA) $(CPPFLAGS_COMMON) $(CPPFLAGS) $(TARGET_ARCH) -c -o $@
 
-
 $(INSTALLDIR)/q3map2.$(EXE): LIBS_EXTRA := $(LIBS_XML) $(LIBS_GLIB) $(LIBS_PNG) $(LIBS_JPEG) $(LIBS_ZLIB)
 $(INSTALLDIR)/q3map2.$(EXE): CPPFLAGS_EXTRA := $(CPPFLAGS_XML) $(CPPFLAGS_GLIB) $(CPPFLAGS_PNG) $(CPPFLAGS_JPEG) -Itools/quake3/common -Ilibs -Iinclude
 $(INSTALLDIR)/q3map2.$(EXE): \
+	libs/fastlz/fastlz.o \
+	libs/detour/DebugDraw.o \
+	libs/detour/DetourAlloc.o \
+	libs/detour/DetourCommon.o \
+	libs/detour/DetourDebugDraw.o \
+	libs/detour/DetourNavMeshBuilder.o \
+	libs/detour/DetourNavMesh.o \
+	libs/detour/DetourNavMeshQuery.o \
+	libs/detour/DetourNode.o \
+	libs/detour/DetourPathCorridor.o \
+	libs/detour/DetourTileCacheBuilder.o \
+	libs/detour/DetourTileCache.o \
+	libs/recast/ChunkyTriMesh.o \
+	libs/recast/RecastAlloc.o \
+	libs/recast/RecastArea.o \
+	libs/recast/RecastContour.o \
+	libs/recast/Recast.o \
+	libs/recast/RecastFilter.o \
+	libs/recast/RecastLayers.o \
+	libs/recast/RecastMesh.o \
+	libs/recast/RecastMeshDetail.o \
+	libs/recast/RecastRasterization.o \
+	libs/recast/RecastRegion.o\
 	tools/quake3/common/cmdlib.o \
 	tools/quake3/common/imagelib.o \
 	tools/quake3/common/inout.o \
@@ -516,6 +547,7 @@ $(INSTALLDIR)/q3map2.$(EXE): \
 	tools/quake3/q3map2/light.o \
 	tools/quake3/q3map2/light_trace.o \
 	tools/quake3/q3map2/light_ydnar.o \
+	tools/quake3/q3map2/nav.o \
 	tools/quake3/q3map2/main.o \
 	tools/quake3/q3map2/map.o \
 	tools/quake3/q3map2/mesh.o \
